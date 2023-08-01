@@ -15,6 +15,8 @@ FROM node:18-alpine AS prod-stage
 RUN apk update && apk upgrade --no-cache
 RUN apk add procps
 
+RUN yarn config set ignore-engines true
+
 WORKDIR /apps/nf-data-explorer
 
 COPY --from=build-stage /tmp/server/dist ./dist
