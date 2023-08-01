@@ -5,6 +5,7 @@ LABEL stage=build-stage
 WORKDIR /tmp/server
 COPY package.json yarn.lock ./
 COPY src/client/package.json src/client/yarn.lock ./src/client/
+RUN yarn config set ignore-engines true
 RUN yarn install --frozen-lockfile
 
 COPY . ./
