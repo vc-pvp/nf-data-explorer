@@ -24,8 +24,6 @@ app.log
 src/client/src/shared/**/*.ts
 coverage/**
 uploads/**
-src/server/config/overrides
-
 discovery.json
 
 .npmrc
