@@ -237,7 +237,7 @@ export const CASSANDRA_ALLOW_TRUNCATE_TABLE = true;
  * Note: Do not add any addition path params as this will likely break routing.
  */
 export const CLUSTER_REDIRECT_HOST =
-  'https://:appName-:regionName.:accountName.acme.net';
+  'https://:appName.:regionName.:accountName.aws.viacbs.tech';
 
 /**
  * The patterns to use to filter the pool of available clusters to just those of that
