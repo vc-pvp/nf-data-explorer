@@ -1,22 +1,19 @@
 # BUILD STAGE
-FROM node:18-alpine AS build-stage
+FROM node:15-alpine AS build-stage
 LABEL stage=build-stage
 
 WORKDIR /tmp/server
 COPY package.json yarn.lock ./
 COPY src/client/package.json src/client/yarn.lock ./src/client/
-RUN yarn config set ignore-engines true
 RUN yarn install --frozen-lockfile
 
 COPY . ./
 RUN yarn && yarn build
 
 # PROD STAGE
-FROM node:18-alpine AS prod-stage
+FROM node:15-alpine AS prod-stage
 RUN apk update && apk upgrade --no-cache
 RUN apk add procps
-
-RUN yarn config set ignore-engines true
 
 WORKDIR /apps/nf-data-explorer
 
