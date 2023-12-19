@@ -59,7 +59,7 @@ export default class EnvironmentDiscoveryProvider extends BaseDiscoveryProvider 
 
     this.clusters = clusters;
     this.environments = [process.env[ENV_VAR_ENV]];
-    this.regions = [process.env[ENV_VAR_REGION];
+    this.regions = [process.env[ENV_VAR_REGION]];
   }
 
   private buildCluster(
