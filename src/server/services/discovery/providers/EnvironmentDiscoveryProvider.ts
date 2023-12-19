@@ -57,9 +57,12 @@ export default class EnvironmentDiscoveryProvider extends BaseDiscoveryProvider 
       clusters.push(this.buildCluster(redisHost, redisHost, 'dynomite'));
     }
 
+    let env = process.env[ENV_VAR_ENV] || "";
+    let region = process.env[ENV_VAR_REGION] || "";
+
     this.clusters = clusters;
-    this.environments = [process.env[ENV_VAR_ENV]];
-    this.regions = [process.env[ENV_VAR_REGION]];
+    this.environments = [env];
+    this.regions = [region];
   }
 
   private buildCluster(

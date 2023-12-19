@@ -1,5 +1,5 @@
 # BUILD STAGE
-FROM node:15-alpine AS build-stage
+FROM node:16-alpine AS build-stage
 LABEL stage=build-stage
 
 WORKDIR /tmp/server
