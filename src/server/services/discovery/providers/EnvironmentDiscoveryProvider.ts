@@ -67,10 +67,12 @@ export default class EnvironmentDiscoveryProvider extends BaseDiscoveryProvider 
     ip: string,
     type: 'cassandra' | 'dynomite',
   ): IClusterDefinition {
+    let env = process.env[ENV_VAR_ENV] || "";
+    let region = process.env[ENV_VAR_REGION] || "";
     return {
       name,
-      env: process.env[ENV_VAR_ENV],
-      region: process.env[ENV_VAR_REGION],
+      env: env,
+      region: region,
       datastoreType: type,
       instances: [
         {
