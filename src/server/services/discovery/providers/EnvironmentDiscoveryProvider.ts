@@ -2,6 +2,7 @@ import { getConfig } from '@/config/configuration';
 import loggerFactory from '@/config/logger';
 import BaseDiscoveryProvider from '@/services/discovery/providers/BaseDiscoveryProvider';
 import { IClusterDefinition } from '@/typings/typings';
+import {ENV_VAR_ENV, ENV_VAR_REGION} from "@/config/base-config";
 
 const logger = loggerFactory(module);
 
@@ -57,8 +58,8 @@ export default class EnvironmentDiscoveryProvider extends BaseDiscoveryProvider 
     }
 
     this.clusters = clusters;
-    this.environments = ['local'];
-    this.regions = ['local'];
+    this.environments = [process.env[ENV_VAR_ENV]];
+    this.regions = [process.env[ENV_VAR_REGION];
   }
 
   private buildCluster(
@@ -68,8 +69,8 @@ export default class EnvironmentDiscoveryProvider extends BaseDiscoveryProvider 
   ): IClusterDefinition {
     return {
       name,
-      env: 'local',
-      region: 'local',
+      env: process.env[ENV_VAR_ENV],
+      region: process.env[ENV_VAR_REGION],
       datastoreType: type,
       instances: [
         {
