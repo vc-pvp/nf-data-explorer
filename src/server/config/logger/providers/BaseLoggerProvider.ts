@@ -9,7 +9,7 @@ export default class BaseLoggerProvider implements ILoggerProvider {
 
     const consoleTransportFormatters = [
       timestamp(),
-      printf((options) => {
+      printf((options: any) => {
         const time = options.timestamp;
         const msg = options.message;
         let level = options.level.toUpperCase();

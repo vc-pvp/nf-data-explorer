@@ -11,7 +11,7 @@ const {
 export default class LocalCassandraClientOptionsProvider
   implements ICassandraClientOptionsProvider {
   public getLocalDatacenter(_region: string): string {
-    return 'datacenter1';
+    return 'dc1';
   }
 
   public getAuthProvider(

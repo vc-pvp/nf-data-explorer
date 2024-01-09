@@ -12,6 +12,14 @@ export function routeToCluster(
   if (!store.state.config.environments) {
     return;
   }
+  /* eslint-disable no-console */
+  console.log('Here', store.state.config.environments);
+  console.log('datastoreType', datastoreType);
+  console.log('cluster', cluster);
+  console.log('env', env)
+  console.log('region', region)
+  /* eslint-enable no-console */
+
   const { current } = store.state.config.environments;
   if (env === current.env && region === current.region) {
     let routeName;

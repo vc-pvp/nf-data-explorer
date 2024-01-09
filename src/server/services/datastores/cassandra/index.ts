@@ -44,7 +44,7 @@ export default class CassandraDatastoreService extends BaseDatastoreService
       const { clientOptionsProvider: provider } = this;
       const sslOptions = await provider.getSslOptions(params);
 
-      const client = new Client({
+      let options: any = {
         contactPoints,
         localDataCenter: provider.getLocalDatacenter(region),
         protocolOptions: {
@@ -59,7 +59,9 @@ export default class CassandraDatastoreService extends BaseDatastoreService
           captureStackTrace: true,
           consistency: types.consistencies.localOne,
         },
-      });
+      }
+      console.log("Options", options)
+      const client = new Client(options);
       client.on('log', (level, _module, message) => {
         if (level === 'verbose') {
           return;
@@ -94,6 +96,7 @@ export default class CassandraDatastoreService extends BaseDatastoreService
       try {
         await client.connect();
       } catch (err) {
+        console.log(err)
         return reject(err);
       }
 
