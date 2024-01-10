@@ -1,4 +1,4 @@
-export const fetchSize = 100;
+export const fetchSize = 10000;
 export const unsupportedTypes = [
   'custom',
   'udt', // UDTs are loaded separately
