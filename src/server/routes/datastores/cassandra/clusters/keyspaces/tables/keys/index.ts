@@ -41,6 +41,12 @@ router.post('/', async (req: Request, res, next) => {
   try {
     // const pageState = getQueryAsString(req, 'pageState');
     const pageState = req.get('pageState');
+    const newPageState = req.headers['PageState'];
+    const newnewPageState = req.get('Pagestate');
+    console.log(req.headers)
+    console.log(pageState)
+    console.log(newPageState)
+    console.log(newnewPageState)
     const generateFile = getQueryAsString(req, 'generateFile');
     const truncate = getQueryAsString<TruncationOption>(req, 'truncate');
     const format = query.format as CassandraExportFormat;

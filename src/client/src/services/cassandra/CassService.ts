@@ -45,8 +45,9 @@ function getKeys(
 
   const qs = new URLSearchParams();
   const headers: any = {}
+
   if (pageState) {
-    headers.pageState = pageState;
+    headers['PageState'] = pageState;
   }
 
   if (options) {
@@ -62,7 +63,7 @@ function getKeys(
   return getClient().post(
     `/REST/datastores/cassandra/clusters/${cluster}/keyspaces/${keyspace}/tables/${table}/keys?${qs}`,
     nonNullFilter, {
-      headers,
+      headers: headers,
     }
   );
 }

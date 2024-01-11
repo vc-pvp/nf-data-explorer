@@ -1,5 +1,5 @@
 import loggerFactory from '@/config/logger';
-import { Client, QueryOptions, metadata } from 'cassandra-driver';
+import {Client, QueryOptions, metadata, types} from 'cassandra-driver';
 import {
   CassEncoding,
   IKeyQuery,
@@ -28,6 +28,7 @@ import { Insert, Select } from './query-builder';
 import { getTable } from './tables';
 import { mapResultRow } from '../utils/row-utils';
 import { CassandraCreateOrUpdateError } from '../errors/CassandraCreateOrUpdateError';
+import ResultSet = types.ResultSet;
 
 const logger = loggerFactory(module);
 
@@ -83,18 +84,30 @@ export async function getKeys(
   const queryStartTime = Date.now();
 
   try {
-    const { columns, rows, pageState, info } = await client.execute(
+    const resultSet: ResultSet = await client.execute(
       query,
       values,
       options,
     );
+
+    console.log("Results", resultSet)
+
+    const columns = resultSet.columns;
+    const rows = resultSet.rows;
+    const pageState = resultSet.pageState;
+    const info = resultSet.info;
+    // const { columns, rows, pageState, info } = await client.execute(
+    //   query,
+    //   values,
+    //   options,
+    // );
 
     logger.info(
       `elapsed query: ${
         Date.now() - queryStartTime
       } ms -- query: ${query} with bindings: ${JSON.stringify(
         values,
-      )} and fetchSize: ${options.fetchSize}`,
+      )} and fetchSize: ${options.fetchSize} and pageState ${pageState}`,
       logMetadata,
     );
     const columnNames = columns.map((column) => column.name);
