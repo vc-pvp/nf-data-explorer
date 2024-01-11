@@ -44,9 +44,11 @@ function getKeys(
   });
 
   const qs = new URLSearchParams();
+  const headers: any = {}
   if (pageState) {
-    qs.set('pageState', pageState);
+    headers.pageState = pageState;
   }
+
   if (options) {
     const { format, generateFile, truncate } = options;
     if (format) {
@@ -59,7 +61,9 @@ function getKeys(
   }
   return getClient().post(
     `/REST/datastores/cassandra/clusters/${cluster}/keyspaces/${keyspace}/tables/${table}/keys?${qs}`,
-    nonNullFilter,
+    nonNullFilter, {
+      headers,
+    }
   );
 }
 
