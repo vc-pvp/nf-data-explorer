@@ -90,7 +90,7 @@ export async function getKeys(
       options,
     );
 
-    console.log("Results", resultSet)
+    console.log("Results", resultSet.pageState)
 
     const columns = resultSet.columns;
     const rows = resultSet.rows;
